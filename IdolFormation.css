@@ -276,35 +276,45 @@ h1 {
     }
 
     /* 各列 */
-    .formation-row {
+    .formation-row{
 
-        width: max-content;
+    display: flex;
 
-        flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
 
-        justify-content: center;
+    justify-content: center;
 
-        gap: 10px;
+    align-items: center;
 
-        height: auto;
+    gap: 10px;
 
-        min-width: 100%;
-    }
+    height: auto;
 
-    #formationArea {
+    width: max-content;
 
-        width: 100%;
+    min-width: max-content;
+}
 
-        overflow-x: auto;
+   #formationArea{
 
-        overflow-y: hidden;
-    }
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
 
     /* メンバー */
-    .member-box {
+   .member-box{
 
-        width: 72px;
-    }
+    flex-shrink: 0;
+}
 
     .member-circle {
 
