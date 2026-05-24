@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        坂道フォーメーション
+    </title>
+
+    <link rel="stylesheet" href="IdolFormation.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         タイトル
+    ========================== -->
+
+    <h1>
+        坂道フォーメーション
+    </h1>
+
+
+    <!-- =========================
+         コントロール
+    ========================== -->
+
+    <div class="controls">
+
+        <!-- 1列目 -->
+        <div class="control-item">
+
+            <label>
+                1列目
+            </label>
+
+            <input type="number" id="row1" min="0" value="3">
+
+        </div>
+
+
+        <!-- 2列目 -->
+        <div class="control-item">
+
+            <label>
+                2列目
+            </label>
+
+            <input type="number" id="row2" min="0" value="5">
+
+        </div>
+
+
+        <!-- 3列目 -->
+        <div class="control-item">
+
+            <label>
+                3列目
+            </label>
+
+            <input type="number" id="row3" min="0" value="7">
+
+        </div>
+
+
+        <!-- 合計 -->
+        <div class="total-area">
+
+            <label>
+                合計
+            </label>
+
+            <input type="text" id="totalCount" readonly>
+
+        </div>
+
+
+        <!-- 作成 -->
+        <button id="createBtn">
+
+            作成
+
+        </button>
+
+        <!-- クリア -->
+        <button id="clearBtn">
+
+            クリア
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         フォーメーション
+    ========================== -->
+
+    <div id="formationArea">
+
+    </div>
+
+<!-- =========================
+     メンバー選択ダイアログ
+========================= -->
+
+    <div id="memberDialog" class="dialog">
+
+    <!-- ダイアログ本体 -->
+    <div class="dialog-content">
+
+        <!-- ヘッダー -->
+        <div class="dialog-header">
+
+            <!-- タイトル -->
+            <h2>
+                メンバー選択
+            </h2>
+
+            <!-- 閉じる -->
+            <button id="dialogCloseBtn" class="close-button">
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+                     期生
+                ========================== -->
+        
+        <div class="dialog-item" style="
+                display: flex;
+                align-items: center;
+                width: 100%;
+                gap: 1rem;
+             ">
+        
+            <select id="termSelect" style="
+                        flex: 1;
+                        min-width: 0;
+                    ">
+            </select>
+        
+            <label for="termSelect" style="
+                        flex: 4;
+                        text-align: left;
+                        font-size: 1rem;
+                        word-break: break-word;
+                   ">
+                期生
+            </label>
+        </div>
+        
+        
+        <!-- =========================
+             メンバー
+        ========================== -->
+        
+        <div class="dialog-item">
+        
+            <label for="memberSelect" style="
+                        flex: 4;
+                        text-align: left;
+                        font-size: 0.9rem;
+                        line-height: 1.2;
+                   ">
+                メンバー
+            </label>
+        
+            <select id="memberSelect" style="
+                        flex: 3;
+                        min-width: 0;
+                        padding: 0.15rem 0.3rem;
+                        font-size: 0.9rem;
+                    ">
+            </select>
+        
+        </div>
+
+    </div>
+
+</div>
+
+</html>
+<script src="IdolFormation.js"></script>
