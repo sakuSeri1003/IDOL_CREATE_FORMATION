@@ -242,6 +242,78 @@ h1{
 
 }
 
+/* =========================
+   スマホ対応のみ
+========================= */
+@media screen and (max-width: 768px) {
+
+    body{
+        padding: 10px;
+    }
+
+    /* 上部操作 */
+    .controls{
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+    }
+
+    .controls input{
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        height: 44px;
+
+        font-size: 16px;
+    }
+
+    #createBtn,
+    #clearBtn{
+
+        width: 100%;
+
+        min-height: 48px;
+    }
+
+    /* フォーメーション */
+    .formation-row{
+
+        gap: 10px;
+
+        height: auto;
+
+        flex-wrap: wrap;
+    }
+
+    /* メンバー */
+    .member-circle{
+
+        width: 72px;
+        height: 72px;
+    }
+
+    .member-select{
+
+        width: 100px;
+    }
+
+    /* ダイアログ */
+    .dialog-content{
+
+        width: 95%;
+
+        max-width: 400px;
+
+        box-sizing: border-box;
+    }
+
+}
+
 /* ペンライトカラー */
 /* 白 */
 .penlight-white {
