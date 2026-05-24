@@ -243,54 +243,58 @@ h1{
 }
 
 /* =========================
-   スマホ対応のみ
+   スマホ最終調整
 ========================= */
 @media screen and (max-width: 768px) {
 
-    body{
-        padding: 10px;
+    *{
+        box-sizing: border-box;
     }
 
-    /* 上部操作 */
+    body{
+        padding: 10px;
+
+        overflow-x: hidden;
+    }
+
+    /* 上部 */
     .controls{
+
+        width: 100%;
 
         flex-direction: column;
 
         align-items: stretch;
-
-        gap: 12px;
     }
 
-    .controls input{
+    /* フォーメーション全体 */
+    #formationArea{
 
         width: 100%;
 
-        box-sizing: border-box;
-
-        height: 44px;
-
-        font-size: 16px;
+        overflow-x: auto;
     }
 
-    #createBtn,
-    #clearBtn{
-
-        width: 100%;
-
-        min-height: 48px;
-    }
-
-    /* フォーメーション */
+    /* 各列 */
     .formation-row{
+
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
 
         gap: 10px;
 
         height: auto;
-
-        flex-wrap: wrap;
     }
 
     /* メンバー */
+    .member-box{
+
+        width: 72px;
+    }
+
     .member-circle{
 
         width: 72px;
@@ -299,17 +303,21 @@ h1{
 
     .member-select{
 
-        width: 100px;
+        width: 72px;
+
+        font-size: 14px;
     }
 
     /* ダイアログ */
     .dialog-content{
 
-        width: 95%;
+        width: 95vw;
 
-        max-width: 400px;
+        max-width: 95vw;
 
-        box-sizing: border-box;
+        max-height: 90vh;
+
+        overflow-y: auto;
     }
 
 }
