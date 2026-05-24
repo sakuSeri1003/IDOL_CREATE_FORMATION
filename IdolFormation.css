@@ -248,12 +248,12 @@ h1 {
 ========================= */
 @media screen and (max-width: 768px) {
 
-    body{
+    body {
         padding: 10px;
         overflow-x: hidden;
     }
 
-    .controls{
+    .controls {
 
         flex-direction: column;
 
@@ -263,49 +263,40 @@ h1 {
     }
 
     /* フォーメーションエリア */
-    #formationArea{
+    #formationArea {
         width: 100%;
     }
 
     /* 行 */
-    .formation-row{
+    .formation-row {
 
-        display: flex;
+        gap: 2px;
 
         flex-wrap: nowrap;
-
-        justify-content: center;
-
-        align-items: center;
-
-        gap: 4px;
-
-        width: 100%;
     }
 
     /* メンバー */
-    .member-box{
+    .member-box {
 
-        flex-shrink: 1;
-
-        width: auto;
+        width: min(12vw, 48px);
     }
 
     /* サークル */
-    .member-circle{
+    .member-circle {
 
-        width: 48px;
-        height: 48px;
+        width: min(12vw, 48px);
 
-        font-size: 14px;
+        height: min(12vw, 48px);
+
+        font-size: min(3vw, 14px);
 
         border-width: 2px;
     }
 
     /* セレクト */
-    .member-select{
+    .member-select {
 
-        width: 52px;
+        width: min(12vw, 48px);
 
         font-size: 10px;
 
@@ -314,7 +305,7 @@ h1 {
 
     /* ボタン */
     #createBtn,
-    #clearBtn{
+    #clearBtn {
 
         width: 100%;
 
@@ -322,7 +313,7 @@ h1 {
     }
 
     /* ダイアログ */
-    .dialog-content{
+    .dialog-content {
 
         width: 95%;
 
