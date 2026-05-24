@@ -244,101 +244,89 @@ h1 {
 }
 
 /* =========================
-   スマホ最終調整
+   スマホ対応
 ========================= */
 @media screen and (max-width: 768px) {
 
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
+    body{
         padding: 10px;
-
         overflow-x: hidden;
     }
 
-    /* 上部 */
-    .controls {
-
-        width: 100%;
+    .controls{
 
         flex-direction: column;
 
         align-items: stretch;
+
+        gap: 12px;
     }
 
-    /* フォーメーション全体 */
-    #formationArea {
-
+    /* フォーメーションエリア */
+    #formationArea{
         width: 100%;
-        overflow-x: auto;
     }
 
-    /* 各列 */
+    /* 行 */
     .formation-row{
 
-    display: flex;
+        display: flex;
 
-    flex-wrap: nowrap !important;
+        flex-wrap: nowrap;
 
-    justify-content: center;
+        justify-content: center;
 
-    align-items: center;
+        align-items: center;
 
-    gap: 10px;
+        gap: 4px;
 
-    height: auto;
-
-    width: max-content;
-
-    min-width: max-content;
-}
-
-   #formationArea{
-
-    width: 100%;
-
-    overflow-x: auto;
-
-    overflow-y: hidden;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-}
-
-    /* メンバー */
-   .member-box{
-
-    flex-shrink: 0;
-}
-
-    .member-circle {
-
-        width: 72px;
-        height: 72px;
+        width: 100%;
     }
 
-    .member-select {
+    /* メンバー */
+    .member-box{
 
-        width: 72px;
+        flex-shrink: 1;
+
+        width: auto;
+    }
+
+    /* サークル */
+    .member-circle{
+
+        width: 48px;
+        height: 48px;
 
         font-size: 14px;
+
+        border-width: 2px;
+    }
+
+    /* セレクト */
+    .member-select{
+
+        width: 52px;
+
+        font-size: 10px;
+
+        padding: 2px;
+    }
+
+    /* ボタン */
+    #createBtn,
+    #clearBtn{
+
+        width: 100%;
+
+        min-height: 48px;
     }
 
     /* ダイアログ */
-    .dialog-content {
+    .dialog-content{
 
-        width: 95vw;
+        width: 95%;
 
-        max-width: 95vw;
-
-        max-height: 90vh;
-
-        overflow-y: auto;
+        max-width: 95%;
     }
 
 }
