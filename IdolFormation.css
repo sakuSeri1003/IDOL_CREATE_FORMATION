@@ -362,9 +362,11 @@ h1 {
 
         width: 100%;
 
-        min-height: 48px;
+        height: 48px;
 
         font-size: 16px;
+
+        box-sizing: border-box;
     }
 
     /* 合計 */
@@ -377,25 +379,24 @@ h1 {
 
         width: 100%;
 
-        min-height: 48px;
+        height: 48px;
     }
 
-    /* ボタン */
+    /* 作成・クリア */
     #createBtn,
-    #clearBtn,
-    #saveImageButton {
+    #clearBtn {
 
         width: 100%;
 
-        min-height: 48px;
-
-        justify-content: center;
+        height: 48px;
 
         font-size: 16px;
     }
 
-    /* タイトルエリア */
+    /* タイトル+保存 */
     .formation-header {
+
+        display: flex;
 
         flex-direction: column;
 
@@ -409,15 +410,31 @@ h1 {
 
         width: 100%;
 
-        min-height: 48px;
+        height: 48px;
 
         font-size: 16px;
+
+        box-sizing: border-box;
     }
 
-    /* フォーメーション */
-    #formationArea {
+    /* 保存ボタン */
+    #saveImageButton {
 
         width: 100%;
+
+        height: 48px;
+
+        font-size: 16px;
+
+        justify-content: center;
+    }
+
+    /* 保存アイコン */
+    .save-icon {
+
+        width: 14px;
+
+        height: 14px;
     }
 
     /* 行 */
