@@ -20,7 +20,7 @@ const createBtn = document.getElementById("createBtn");
 // クリアボタン
 const clearBtn = document.getElementById("clearBtn");
 // フォーメーションエリア
-const formationArea = document.getElementById("formationArea");
+const formationCanvas = document.getElementById("formationCanvas");
 // 期生コンボボックス
 const termSelect = document.getElementById("termSelect");
 // メンバーコンボボックス
@@ -29,6 +29,8 @@ const memberSelect = document.getElementById("memberSelect");
 const memberDialog = document.getElementById("memberDialog");
 // ダイアログ閉じるボタン
 const dialogCloseBtn = document.getElementById("dialogCloseBtn");
+// 保存ボタン
+const saveImageButton = document.getElementById("saveImageButton");
 
 // =========================
 // 初期処理
@@ -116,6 +118,12 @@ function registerEvents() {
     memberDialog.addEventListener(
         "click",
         clickDialogBackground
+    );
+
+    // 保存ボタンクリック
+    saveImageButton.addEventListener(
+        "click",
+        saveFormationImage
     );
 
 }
@@ -243,7 +251,7 @@ function createTermOptions() {
 // メンバー絞込
 // =========================
 
-function updateMemberOptions(selectedTerm) {
+function updateMemberOptions(selectedTerm, excludeIds = []) {
 
     // 初期化
     memberSelect.innerHTML = "";
@@ -281,6 +289,16 @@ function updateMemberOptions(selectedTerm) {
             });
 
     }
+
+    // 使用済みメンバー除外
+    filteredMembers =
+        filteredMembers.filter(member => {
+
+            return !excludeIds.includes(
+                member.id.toString()
+            );
+
+        });
 
     // 名前順
     filteredMembers.sort((a, b) => {
@@ -335,7 +353,7 @@ function clickCreateButton() {
         );
 
     // 初期化
-    formationArea.innerHTML = "";
+    formationCanvas.innerHTML = "";
 
     // 表示順
     const rows = [
@@ -381,7 +399,7 @@ function clickCreateButton() {
 
         }
 
-        formationArea.appendChild(
+        formationCanvas.appendChild(
             rowDiv
         );
 
@@ -409,7 +427,7 @@ function clickClearButton() {
     }
 
     // フォーメーション削除
-    formationArea.innerHTML = "";
+    formationCanvas.innerHTML = "";
 
     // 選択中サークル初期化
     currentCircle = null;
@@ -490,11 +508,33 @@ function clickCircle(event) {
 
 function openDialog() {
 
+    // 使用中memberId取得
+    const usedMemberIds = Array.from(
+        document.querySelectorAll(".member-circle")
+    )
+        .map(circle => circle.dataset.memberId)
+        .filter(id => id);
+
+    // 現在編集中のメンバー
+    const currentMemberId =
+        currentCircle.dataset.memberId;
+
+    // 自分自身は除外対象から外す
+    const excludeIds =
+        usedMemberIds.filter(id => {
+
+            return id !== currentMemberId;
+
+        });
+
+    // メンバー表示
+    updateMemberOptions("", excludeIds);
+
     // 期生初期化
     termSelect.value = "";
 
-    // 全メンバー表示
-    updateMemberOptions("");
+    // 現在値セット
+    memberSelect.value = currentMemberId;
 
     // 表示
     memberDialog.style.display =
@@ -554,12 +594,9 @@ function clickCloseButton() {
 
 function changeTerm() {
 
-    const selectedTerm =
-        termSelect.value;
+    const selectedTerm = termSelect.value;
 
-    updateMemberOptions(
-        selectedTerm
-    );
+    updateMemberOptions(selectedTerm);
 
 }
 
@@ -573,7 +610,11 @@ function SetMenber() {
     // 未選択
     if (memberSelect.value == "") {
 
-        return;
+        currentCircle.dataset.memberId = "";
+        currentCircle.textContent = "+";
+        currentCircle.style.background = "";
+        closeDialog();
+        return
 
     }
 
@@ -679,5 +720,146 @@ function SetMenber() {
     // =========================
 
     closeDialog();
+
+}
+
+/* =========================
+   画像保存
+========================= */
+async function saveFormationImage() {
+
+    // 保存対象
+    const target =
+        document.getElementById(
+            "captureArea"
+        );
+
+    // 画像化
+    const canvas =
+        await html2canvas(target, {
+
+            backgroundColor: null,
+
+            useCORS: true,
+
+            scale: 2
+        });
+
+    // Blob化
+    const blob =
+        await new Promise(resolve => {
+
+            canvas.toBlob(resolve);
+
+        });
+
+    // タイトル
+    const title =
+        document.getElementById(
+            "formationTitle"
+        ).value || "formation";
+
+    // ファイル名
+    const fileName =
+        `${title}.png`;
+
+    // スマホ用
+    const file =
+        new File(
+            [blob],
+            fileName,
+            {
+                type: "image/png"
+            }
+        );
+
+    // =========================
+    // スマホ共有
+    // =========================
+    if (
+        navigator.share &&
+        navigator.canShare({
+            files: [file]
+        })
+    ) {
+
+        try {
+
+            await navigator.share({
+
+                files: [file],
+
+                title: title
+            });
+
+        }
+        catch (error) {
+
+            console.log(error);
+
+        }
+
+        return;
+    }
+
+    // =========================
+    // PC保存
+    // =========================
+
+    // File System Access API対応
+    if (window.showSaveFilePicker) {
+
+        try {
+
+            const handle =
+                await window.showSaveFilePicker({
+
+                    suggestedName:
+                        fileName,
+
+                    types: [
+
+                        {
+
+                            description:
+                                "PNG Image",
+
+                            accept: {
+
+                                "image/png":
+                                    [".png"]
+                            }
+                        }
+                    ]
+                });
+
+            const writable =
+                await handle.createWritable();
+
+            await writable.write(blob);
+
+            await writable.close();
+
+        }
+        catch (error) {
+
+            console.log(error);
+
+        }
+
+        return;
+    }
+
+    // 非対応ブラウザ
+    const link =
+        document.createElement("a");
+
+    link.href =
+        URL.createObjectURL(blob);
+
+    link.download =
+        fileName;
+
+    link.click();
 
 }

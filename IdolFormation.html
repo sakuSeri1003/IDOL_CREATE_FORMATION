@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="IdolFormation.css">
 
 </head>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <body>
 
@@ -90,9 +92,7 @@
             クリア
 
         </button>
-
     </div>
-
 
     <!-- =========================
          フォーメーション
@@ -100,89 +100,115 @@
 
     <div id="formationArea">
 
+        <!-- 保存対象 -->
+        <div id="captureArea">
+
+            <!-- タイトル -->
+            <div class="formation-header">
+
+                <input type="text" id="formationTitle" placeholder="th シングル選抜メンバー">
+
+            </div>
+
+            <!-- フォーメーション -->
+            <div id="formationCanvas">
+
+            </div>
+
+        </div>
+
+        <!-- 保存ボタン -->
+        <button id="saveImageButton">
+
+            <img src="./images/download_icon.jpeg" class="save-icon">
+
+            保存
+
+        </button>
+
     </div>
 
-<!-- =========================
+    <!-- =========================
      メンバー選択ダイアログ
 ========================= -->
 
     <div id="memberDialog" class="dialog">
 
-    <!-- ダイアログ本体 -->
-    <div class="dialog-content">
+        <!-- ダイアログ本体 -->
+        <div class="dialog-content">
 
-        <!-- ヘッダー -->
-        <div class="dialog-header">
+            <!-- ヘッダー -->
+            <div class="dialog-header">
 
-            <!-- タイトル -->
-            <h2>
-                メンバー選択
-            </h2>
+                <!-- タイトル -->
+                <h2>
+                    メンバー選択
+                </h2>
 
-            <!-- 閉じる -->
-            <button id="dialogCloseBtn" class="close-button">
-                ×
-            </button>
+                <!-- 閉じる -->
+                <button id="dialogCloseBtn" class="close-button">
+                    ×
+                </button>
 
-        </div>
+            </div>
 
 
-        <!-- =========================
+            <!-- =========================
                      期生
                 ========================== -->
-        
-        <div class="dialog-item" style="
+
+            <div class="dialog-item" style="
                 display: flex;
                 align-items: center;
                 width: 100%;
                 gap: 1rem;
              ">
-        
-            <select id="termSelect" style="
+
+                <select id="termSelect" style="
                         flex: 1;
                         min-width: 0;
                     ">
-            </select>
-        
-            <label for="termSelect" style="
+                </select>
+
+                <label for="termSelect" style="
                         flex: 4;
                         text-align: left;
                         font-size: 1rem;
                         word-break: break-word;
                    ">
-                期生
-            </label>
-        </div>
-        
-        
-        <!-- =========================
+                    期生
+                </label>
+            </div>
+
+
+            <!-- =========================
              メンバー
         ========================== -->
-        
-        <div class="dialog-item">
-        
-            <label for="memberSelect" style="
+
+            <div class="dialog-item">
+
+                <label for="memberSelect" style="
                         flex: 4;
                         text-align: left;
                         font-size: 0.9rem;
                         line-height: 1.2;
                    ">
-                メンバー
-            </label>
-        
-            <select id="memberSelect" style="
+                    メンバー
+                </label>
+
+                <select id="memberSelect" style="
                         flex: 3;
                         min-width: 0;
                         padding: 0.15rem 0.3rem;
                         font-size: 0.9rem;
                     ">
-            </select>
-        
+                </select>
+
+            </div>
+
         </div>
 
     </div>
-
-</div>
 
 </html>
 <script src="IdolFormation.js"></script>
