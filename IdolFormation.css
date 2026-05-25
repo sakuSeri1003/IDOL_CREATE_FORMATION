@@ -150,16 +150,6 @@ h1 {
     transform: scale(1.05);
 }
 
-/* 保存アイコン */
-.save-icon {
-
-    width: 14px;
-
-    height: 14px;
-
-    object-fit: contain;
-}
-
 /* =========================
    タイトル
 ========================= */
@@ -422,14 +412,6 @@ h1 {
         min-height: 48px;
 
         font-size: 16px;
-    }
-
-    /* 保存アイコン */
-    .save-icon {
-
-        width: 14px;
-
-        height: 14px;
     }
 
     /* フォーメーション */
